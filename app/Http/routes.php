@@ -18,3 +18,8 @@ Route::get('/', function () {
 Route::auth();
 
 Route::get('/home', 'HomeController@index');
+
+Route::get('/pensyarah-senarailaporan', ['uses'=>'PensyarahController@showSenaraiLaporan'])->name('showSenaraiLaporan');
+Route::get('/pensyarah-laporan', ['uses'=>'PensyarahController@showLaporan'])->name('showLaporan');
+Route::post('/pensyarah-createlaporan', ['uses'=>'PensyarahController@createLaporan'])->name('createLaporan');
+Route::post('/pensyarah-deletelaporan', ['uses'=>'PensyarahController@deleteLaporan'])->name('deleteLaporan');
