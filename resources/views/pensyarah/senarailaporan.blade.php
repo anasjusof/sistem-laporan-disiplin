@@ -56,7 +56,11 @@
 	                            <td> {{ $laporan->no_tentera_kp }}</td>
                                     <td> {{ $laporan->semester }}</td>
                                     <td> {{ $laporan->sesi }}</td>
-	                            <td> <a href="" class="btn blue editBtn" data-toggle="modal" data-target="#editModal" data-id="{{ $laporan->id }}" data-nama_pelajar="{{ $laporan->nama_pelajar }}" data-no_tentera_kp="{{ $laporan->no_tentera_kp }}" data-semester="{{ $laporan->semester }}" data-sesi="{{ $laporan->sesi }}">Edit/Lihat Laporan</a>
+                                    @if(Auth::user()->roles_id == 0)
+	                            <td> <a href="/pensyarah-showlaporan/{{ $laporan->id}}" class="btn blue">Edit/Lihat Laporan</a>
+                                    @else(Auth::user()->roles_id == 1)
+                                    <td> <a href="/pensyarah-showlaporan/{{ $laporan->id}}" class="btn blue">Lihat Laporan</a>
+                                    @endif
 	                        </tr>
 	                        <?php $count++ ?>
 	                        @endforeach

@@ -112,7 +112,6 @@ License: You must have a valid license purchased only from themeforest(the above
 			<ul class="nav navbar-nav pull-right">
 				<!-- BEGIN NOTIFICATION DROPDOWN -->
 				<!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
-				
 				<!-- BEGIN USER LOGIN DROPDOWN -->
 				<!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
 				<li class="dropdown dropdown-user">
@@ -122,9 +121,13 @@ License: You must have a valid license purchased only from themeforest(the above
 					<i class="fa fa-angle-down"></i>
 					</a>
 					<ul class="dropdown-menu dropdown-menu-default">
+                                                <li>
+							<a href="" data-toggle="modal" data-target="#changePassword" >
+							<i class="fa fa-cog"></i>Tukar Kata Laluan</a>
+						</li>
 						<li>
 							<a href="{{ url('/logout') }}">
-							<i class="icon-key"></i> Log Out </a>
+							<i class="icon-key"></i> Log Keluar </a>
 						</li>
 					</ul>
 				</li>
@@ -164,42 +167,28 @@ License: You must have a valid license purchased only from themeforest(the above
 				</li>
 				@if(Auth::user()->roles_id == 1)
 				<li>
-					<a href="" class="li-hover"> <!-- {{ route('admin.index') }} -->
+					<a href="{{ route('showSenaraiLaporan') }}" class="li-hover">
 					<i class="fa fa-calendar hover-icon"></i>
 					<span class="title">Senarai Laporan</span>
 					</a>
 				</li>
                                 <li>
-					<a href="" class="li-hover">
+					<a href="{{ route('showPensyarah') }}" class="li-hover">
 					<i class="fa fa-calendar hover-icon"></i>
-					<span class="title">Daftar Akaun Pensyarah</span>
+					<span class="title">Pensyarah</span>
 					</a>
 				</li>
 				@endif
 
 				@if(Auth::user()->roles_id == 0)
 				<li>
-					<a href="" class="li-hover">
+					<a href="{{ route('showSenaraiLaporan') }}" class="li-hover">
 					<i class="fa fa-calendar hover-icon"></i>
 					<span class="title">Senarai Laporan</span>
 					</a>
-					<!--
-					<ul class="sub-menu">
-						<li>
-							<a href=" ">
-							<i class="icon-plus"></i>
-							Pay Zakat</a>
-						</li>
-						<li>
-							<a href=" ">
-							<i class="icon-calendar"></i>
-							View your history</a>
-						</li>
-					</ul>
-					-->
 				</li>
 				<li>
-					<a href="" class="li-hover">
+					<a href="{{ route('showLaporan') }}" class="li-hover">
 					<i class="fa fa-calendar hover-icon"></i>
 					<span class="title">Laporan</span>
 					</a>
@@ -261,6 +250,43 @@ License: You must have a valid license purchased only from themeforest(the above
 	<div class="scroll-to-top">
 		<i class="icon-arrow-up"></i>
 	</div>
+</div>
+
+<div id="changePassword" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Tukar Kata Laluan</h4>
+      </div>
+      <div class="modal-body">
+      	<div class="row">
+      	{!! Form::open(['method'=>'PATCH', 'action'=>'KetuaBatalionController@changePassword']) !!}
+	     
+                <div class="form-group col-md-12">
+	            <label for="inputPassword1" class="col-md-4 control-label">Kata Laluan</label>
+	            <div class="col-md-8">
+	                    <input type="password" name="password" class="form-control input-line" id="" >
+	            </div>
+	        </div>
+                <div class="form-group col-md-12">
+	            <label for="inputPassword1" class="col-md-4 control-label">Pengesahan Kata Laluan</label>
+	            <div class="col-md-8">
+	                    <input type="password" name="password_confirmation" class="form-control input-line" id="" >
+	            </div>
+	        </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+      	<button type="submit" class="btn btn-primary">Kemaskini</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+       {!! Form::close() !!}
+      </div>
+    </div>
+
+  </div>
 </div>
 <!-- END FOOTER -->
 <!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
